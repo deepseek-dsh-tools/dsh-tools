@@ -100,4 +100,4 @@ Windows 计划任务 `bili-db-maintain`：
 
 ## 回滚
 
-任一份 `backups/index-*.db` 覆盖回 `C:\Users\z1366\.local\share\billion-context\sessions\index.db` 即可（先停 bili 或让它空闲）。删掉计划任务：`Unregister-ScheduledTask -TaskName 'bili-db-maintain' -Confirm:$false`。
+任一份 `backups/index-*.db` 覆盖回 `%USERPROFILE%\.local\share\billion-context\sessions\index.db` 即可（先停 bili 或让它空闲）。删掉计划任务：`Unregister-ScheduledTask -TaskName 'bili-db-maintain' -Confirm:$false`。

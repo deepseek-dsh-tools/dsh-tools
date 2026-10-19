@@ -26,7 +26,7 @@ metadata:
 ## 纪律
 - 一次只改一个逻辑单元，改完立刻验证
 - 原始文件先读后写
-- 跑 headless 前必须显式带 `DSH_HOME=D:/DSH/.dsh`，否则会话历史落到 `C:\Users\z1366\.dsh`
+- 跑 headless 前必须显式带 `DSH_HOME=D:/DSH/.dsh`，否则会话历史落到 `%USERPROFILE%\.dsh`
 
 ## 背景
 2026-10-17 装 dsh-purge 后提示词抛 `unknown prompt variable "{{cwd}}"`、整轮对话失败。这套流程就是为了拦住这类事。

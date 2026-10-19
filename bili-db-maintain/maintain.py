@@ -24,8 +24,10 @@ from datetime import datetime
 
 BASE = r"D:\DSH\.dsh\cache\bili-db-maintain"
 # 真库路径；可用环境变量 BILI_DB 覆盖（在副本上验证时用）
-DB = os.environ.get("BILI_DB") or r"C:\Users\z1366\.local\share\billion-context\sessions\index.db"
-# 备份目录跟着被测库走：真库用 BASEackups；BILI_DB 指向副本时落到副本旁边的 _backups，
+DB = os.environ.get("BILI_DB") or os.path.expanduser(
+    r"~\.local\share\billion-context\sessions\index.db"
+)
+# 备份目录跟着被测库走：真库用 BASE\backups；BILI_DB 指向副本时落到副本旁边的 _backups，
 # 免得拿测试库把真备份挤掉（KEEP_BACKUPS 只留 2 份）。
 BACKUP_DIR = (
     os.path.join(BASE, "backups")
