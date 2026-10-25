@@ -1,6 +1,6 @@
-﻿# bili index.db 维护任务包装（PowerShell 5.1 兼容，文件必须带 BOM）
+# bili index.db 维护任务包装（PowerShell 5.1 兼容，文件必须带 BOM）
 $ErrorActionPreference = 'Continue'
-$Base = 'D:\DSH\.dsh\cache\bili-db-maintain'
+$Base = 'D:\DSH_Home\.DSH\cache\bili-db-maintain'
 $Py   = 'D:\用户\工具\pythons\cpython-3.12.15-windows-x86_64-none\python.exe'
 $Script = Join-Path $Base 'maintain.py'
 $Log  = Join-Path $Base 'task.log'

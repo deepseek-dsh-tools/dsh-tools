@@ -18,8 +18,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-const BASE = 'D:/DSH/.dsh/cache/mode-switch';
-const DSH_HOME = 'D:/DSH/.dsh';
+const BASE = 'D:/DSH_Home/.DSH/cache/mode-switch';
+const DSH_HOME = 'D:/DSH_Home/.DSH';
 const PROFILES = path.join(DSH_HOME, 'profiles');
 const DESKTOP = path.join(PROFILES, 'desktop');
 const PATCH = process.env.DSH_PROFILE_PATCH || path.join(DESKTOP, 'cordis.patch.yml');
@@ -49,7 +49,7 @@ const FAMILIES = {
 };
 
 const MODES = {
-  survey:  { on: ['browser'], desc: '问卷/网页作业' },
+  web:     { on: ['browser'], desc: '纯网页/浏览器作业' },
   blender: { on: ['blender'], desc: 'Blender 建模渲染' },
   dev:     { on: ['browser', 'team'], desc: '写代码 + 派子智能体' },
   full:    { on: ['blender', 'browser', 'team', 'doublecheck', 'computer'], desc: '全开（等于没开关）' },
@@ -354,11 +354,11 @@ function verify(mode) {
     // 层 1.5：防抖判定（纯函数，直接喂假 state）
     const T0 = Date.parse('2026-10-19T12:00:00Z');
     const bounceCases = [
-      { label: '43 秒内 A→B→A', cur: { mode: 'dev', from: 'survey', ts: new Date(T0).toISOString() }, to: 'survey', now: T0 + 43000, want: true },
-      { label: '10 分钟前从 A 来（超窗口）', cur: { mode: 'dev', from: 'survey', ts: new Date(T0).toISOString() }, to: 'survey', now: T0 + 600000, want: false },
-      { label: '不是回弹（从别的模式来）', cur: { mode: 'dev', from: 'blender', ts: new Date(T0).toISOString() }, to: 'survey', now: T0 + 1000, want: false },
-      { label: '切到同一模式', cur: { mode: 'survey', from: 'dev', ts: new Date(T0).toISOString() }, to: 'survey', now: T0 + 1000, want: false },
-      { label: '没有 state.json', cur: null, to: 'survey', now: T0, want: false },
+      { label: '43 秒内 A→B→A', cur: { mode: 'dev', from: 'web', ts: new Date(T0).toISOString() }, to: 'web', now: T0 + 43000, want: true },
+      { label: '10 分钟前从 A 来（超窗口）', cur: { mode: 'dev', from: 'web', ts: new Date(T0).toISOString() }, to: 'web', now: T0 + 600000, want: false },
+      { label: '不是回弹（从别的模式来）', cur: { mode: 'dev', from: 'blender', ts: new Date(T0).toISOString() }, to: 'web', now: T0 + 1000, want: false },
+      { label: '切到同一模式', cur: { mode: 'web', from: 'dev', ts: new Date(T0).toISOString() }, to: 'web', now: T0 + 1000, want: false },
+      { label: '没有 state.json', cur: null, to: 'web', now: T0, want: false },
     ];
     for (const c of bounceCases) {
       const hit = bounceReason(c.cur, c.to, c.now) !== null;

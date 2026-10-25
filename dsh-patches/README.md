@@ -16,12 +16,12 @@
 `["text","image"]`。备份在同目录 `backups/20261018-225215/pack.js`。
 
 **目标文件**（随插件版本变，脚本里已写死）：
-`D:/DSH/.dsh/profiles/desktop/node_modules/dsh-our-free-model/vendor/channel-pack/pack.js`
+`D:/DSH_Home/.DSH/profiles/desktop/node_modules/dsh-our-free-model/vendor/channel-pack/pack.js`
 
 **怎么跑**：
 ```bash
 export NODE=/d/DSH/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/node/bin/node.exe
-"$NODE" D:/DSH/.dsh/cache/safe-change/patch-pack-cline.mjs
+"$NODE" D:/DSH_Home/.DSH/cache/safe-change/patch-pack-cline.mjs
 "$NODE" /d/DSH/.dsh/cache/safe-change/safe-change.mjs check "/d/DSH/.dsh/profiles/desktop/node_modules/dsh-our-free-model/vendor/channel-pack/pack.js"
 "$NODE" /d/DSH/.dsh/cache/safe-change/safe-change.mjs import "/d/DSH/.dsh/profiles/desktop/node_modules/dsh-our-free-model/index.js"
 ```

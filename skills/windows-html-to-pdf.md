@@ -87,4 +87,4 @@ URL 必须 `file:///D:/...`（正斜杠，中文路径可直传）。
 
 ## python-docx（造 docx 用）
 
-`D:/DSH/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe` —— 有 python-docx / Pillow / openpyxl；**没有 reportlab / pymupdf / pypdf**。
+`D:/DSH_Home/.DSH/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe` —— 有 python-docx / Pillow / openpyxl；**没有 reportlab / pymupdf / pypdf**。

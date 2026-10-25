@@ -2,7 +2,7 @@
 // 记忆管理 · 手动查看/修改跨会话记忆
 //   双击同目录的 记忆.cmd      -> 交互菜单（推荐）
 //   node memory-tool.mjs list|show|add|edit|del|pin|unpin|files|open|menu
-// 数据源 1：D:/DSH/.dsh/memory-core.db 的 core_facts 表 —— 每轮对话自动注入的事实
+// 数据源 1：D:/DSH_Home/.DSH/memory-core.db 的 core_facts 表 —— 每轮对话自动注入的事实
 // 数据源 2：D:/用户/记忆/ 下两份档案 —— AI 主动读的长期档案
 import { DatabaseSync } from "node:sqlite";
 import { createHash, randomUUID } from "node:crypto";
@@ -14,7 +14,7 @@ import readline from "node:readline";
 const NL = String.fromCharCode(10);
 const BS = String.fromCharCode(92);
 const show = (p) => p.split("/").join(BS);
-const DSH_HOME = "D:/DSH/.dsh";
+const DSH_HOME = "D:/DSH_Home/.DSH";
 const DB_PATH = DSH_HOME + "/memory-core.db";
 const BACKUP_DIR = DSH_HOME + "/cache/memory-db-backup";
 const WORKSPACE = "D:" + BS + "用户";

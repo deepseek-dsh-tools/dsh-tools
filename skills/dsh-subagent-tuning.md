@@ -18,7 +18,7 @@ metadata:
 ## 关键坑
 - `applyEntryPatches` 对 `config` 是**整键替换**，不递归进 `config.plugins`（递归条件只有 `entry.group && Array.isArray(entry.config)`）→ 覆盖 preset 必须全量写出。
 - **live 重载 ≠ 运行时生效**：patch 写入后 `cordis.yml` 立刻重新合成，但 preset 在启动时挂载，**必须重启桌面端**。
-- 生成方式：从 `D:\DSH\resources\app\dsh\node_modules\@deepseek-ai\dsh-web-app\presets\ptc.patch.yml` 文本级提取，脚本 `D:\DSH\.dsh\cache\probe-agnes\apply-preset-override.mjs`（不带 target 参数 = dry run）。
+- 生成方式：从 `D:\DSH\resources\app\dsh\node_modules\@deepseek-ai\dsh-web-app\presets\ptc.patch.yml` 文本级提取，脚本 `D:\DSH_Home\.DSH\cache\probe-agnes\apply-preset-override.mjs`（不带 target 参数 = dry run）。
 
 ## teammate 为什么贵、能不能单独降
 - teammate 不走 `tool-subagent`，走 `@deepseek-ai/dsh-experimental-tool-agent-team`；`spawnTeammate`（`lib/index.js:1507`）→ `roster.spawn` 不传 preset → 用全局 `defaultId`。
@@ -33,4 +33,4 @@ metadata:
 子智能体槽位自动回收（`dsh-subagent/lib/index.js:1046` `ActivationPool.reserve`），完成即释放；上限是"同时活跃数"（`maxActiveSubagents` default 8），超限立即报错不排队。`subagent` 不可复用，`teammate` 可反复 `send_message`。
 
 ## 验证法子
-`D:\DSH\.dsh\cache\probe-agnes\check-sub.mjs <subagentId>` 读它的 session（多帧 zstd）算 system prompt 字符数。
+`D:\DSH_Home\.DSH\cache\probe-agnes\check-sub.mjs <subagentId>` 读它的 session（多帧 zstd）算 system prompt 字符数。

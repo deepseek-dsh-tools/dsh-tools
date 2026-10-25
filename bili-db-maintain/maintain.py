@@ -22,7 +22,7 @@ import sys
 import time
 from datetime import datetime
 
-BASE = r"D:\DSH\.dsh\cache\bili-db-maintain"
+BASE = r"D:\DSH_Home\.DSH\cache\bili-db-maintain"
 # 真库路径；可用环境变量 BILI_DB 覆盖（在副本上验证时用）
 DB = os.environ.get("BILI_DB") or os.path.expanduser(
     r"~\.local\share\billion-context\sessions\index.db"

@@ -10,7 +10,7 @@ metadata:
 # 记忆体系
 
 ## 三通道
-1. **每轮注入**：`D:\用户\AGENTS.md`（workspace instructions）+ `core_facts`（`D:\DSH\.dsh\memory-core.db`）
+1. **每轮注入**：`D:\用户\AGENTS.md`（workspace instructions）+ `core_facts`（`D:\DSH_Home\.DSH\memory-core.db`）
 2. **按需读**：`D:\用户\记忆\*.md`（关于你 / 我们的进展 / 路径地图 / 我的真实档案）
 3. **本会话检索**：`memory_search`（归档的旧步骤）
 

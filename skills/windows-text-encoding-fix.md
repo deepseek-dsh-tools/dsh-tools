@@ -50,7 +50,7 @@ python fix-encoding.py "D:/某个目录" --go --mirror "D:/out"   # 结果写到
 python fix-encoding.py "D:/某个目录" --ext txt,srt,md         # 只处理指定扩展名
 ```
 
-本机 Python：`D:/DSH/.dsh/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe`
+本机 Python：`D:/DSH_Home/.DSH/dsh-runtimes/dsh-primary-runtime/dependencies/python/python.exe`
 
 ## 已知残留
 

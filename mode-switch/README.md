@@ -6,14 +6,14 @@
 ## 用法
 
 ```
-D:\DSH\.dsh\cache\mode-switch\mode.cmd list         # 看模式与家族
-D:\DSH\.dsh\cache\mode-switch\mode.cmd status       # 当前模式 / 谁被关了
-D:\DSH\.dsh\cache\mode-switch\mode.cmd survey -n    # 预览，不写任何文件
-D:\DSH\.dsh\cache\mode-switch\mode.cmd survey       # 真切换
-D:\DSH\.dsh\cache\mode-switch\mode.cmd verify       # 校验当前模式（22 项）
-D:\DSH\.dsh\cache\mode-switch\mode.cmd verify dev   # 校验某个模式（只模拟，不改状态）
-D:\DSH\.dsh\cache\mode-switch\mode.cmd log          # 切换记录（时间/切到/从哪来/间隔）
-D:\DSH\.dsh\cache\mode-switch\mode.cmd survey --force   # 越过防抖强制切
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd list         # 看模式与家族
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd status       # 当前模式 / 谁被关了
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd web -n       # 预览，不写任何文件
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd web          # 真切换
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd verify       # 校验当前模式（22 项）
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd verify dev   # 校验某个模式（只模拟，不改状态）
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd log          # 切换记录（时间/切到/从哪来/间隔）
+D:\DSH_Home\.DSH\cache\mode-switch\mode.cmd web --force      # 越过防抖强制切
 ```
 
 **切模式是花钱的动作**：patch 一变宿主就重新装配、系统提示整段换掉，下一次请求的**全部历史**
@@ -24,7 +24,7 @@ D:\DSH\.dsh\cache\mode-switch\mode.cmd survey --force   # 越过防抖强制切
 
 | 模式 | 开着的家族 | 用途 |
 |---|---|---|
-| `survey` | browser | 问卷 / 网页作业 |
+| `web` | browser | 纯网页 / 浏览器作业 |
 | `blender` | blender | 建模 / 渲染 |
 | `dev` | browser + team | 写代码 + 派子智能体 |
 | `full` | 全开 | 安全基线（等于没开关） |
@@ -40,16 +40,16 @@ D:\DSH\.dsh\cache\mode-switch\mode.cmd survey --force   # 越过防抖强制切
 | doublecheck | `doublecheck-grill` `doublecheck-guard` | 1410 |
 | computer | `computer-use` | 2038 |
 
-`survey` 关掉 blender/team/doublecheck/computer = **省 ≈12,334 tok / 请求**。
+`web` 关掉 blender/team/doublecheck/computer = **省 ≈12,334 tok / 请求**。
 
 ## 机制（四条必须知道）
 
 ### 1. 状态在 state.json，不在 patch 里
 
-`D:\DSH\.dsh\cache\mode-switch\state.json`：
+`D:\DSH_Home\.DSH\cache\mode-switch\state.json`：
 
 ```json
-{ "mode": "survey", "on": ["browser"], "ts": "2026-10-19T06:47:51.834Z", "from": "full" }
+{ "mode": "web", "on": ["browser"], "ts": "2026-10-19T06:47:51.834Z", "from": "full" }
 ```
 
 `ts` 是上次切换时间，`from` 是切换前的模式 —— 后者专给防抖用（判断「是不是刚从这个模式切走」）。
@@ -59,7 +59,7 @@ patch 末尾那段（`# >>> MODE-SWITCH BEGIN` … `END`）的每一行 `disable
 ```js
 (() => { try {
   const fs = process.getBuiltinModule('fs');
-  const st = JSON.parse(fs.readFileSync('D:/DSH/.dsh/cache/mode-switch/state.json', 'utf8'));
+  const st = JSON.parse(fs.readFileSync('D:/DSH_Home/.DSH/cache/mode-switch/state.json', 'utf8'));
   const on = Array.isArray(st.on) ? st.on : ["blender","browser","team","doublecheck","computer"];
   return on.indexOf("blender") < 0;     // 不在 on 列表里 → 禁用
 } catch (e) { return false; } })()      // 读不到/坏掉 → 不禁用（退化全开）
@@ -114,7 +114,7 @@ mode.mjs 关 team 时用**反向表达式**把这四行补开。
 ```
 mode.cmd full        # 全开，等于没开关
 ```
-原始 patch 备份：`D:\DSH\.dsh\cache\safe-change\backups\20261019-113954\cordis.patch.yml`
+原始 patch 备份：`D:\DSH_Home\.DSH\cache\safe-change\backups\20261019-113954\cordis.patch.yml`
 （把备份覆盖回 `profiles/desktop/cordis.patch.yml` 即彻底摘除）
 
 ## 已知限制

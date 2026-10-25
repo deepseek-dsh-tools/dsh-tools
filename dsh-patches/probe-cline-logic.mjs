@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-const P = 'D:/DSH/.dsh/profiles/desktop/node_modules/dsh-our-free-model/vendor/channel-pack/pack.js';
+const P = 'D:/DSH_Home/.DSH/profiles/desktop/node_modules/dsh-our-free-model/vendor/channel-pack/pack.js';
 const src = readFileSync(P, 'utf8');
 const START = src.indexOf('ClineAdapter = class extends LlmAdapter6');
 const seg = src.slice(START, src.indexOf('// vendor/channel-pack/src/', START));
