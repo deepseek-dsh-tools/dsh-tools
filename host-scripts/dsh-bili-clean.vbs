@@ -1,0 +1,2 @@
+' dsh-bili-clean.vbs -- 无窗口跑清理（wscript 是 GUI 子系统，不分配控制台）
+CreateObject("WScript.Shell").Run "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File ""D:\用户\工具\dsh-bili-clean.ps1"" -KeepDays 3 -Quiet", 0, False
